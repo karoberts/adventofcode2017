@@ -4,6 +4,7 @@ with open('09.txt') as f:
 
     groups = []
     score = 0
+    count = 0
 
     gbg = False
     p = 0
@@ -23,7 +24,10 @@ with open('09.txt') as f:
             gbg = False
         elif c == '!':
             p += 1
+        else:
+            count += 1
 
         p += 1
 
-    print(score)
+    print('part1', score)
+    print('part2', count)
