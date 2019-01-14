@@ -37,6 +37,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="07-02.py" />
+    <Compile Include="08.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
