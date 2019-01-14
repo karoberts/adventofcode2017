@@ -10,6 +10,8 @@ def g_maxbank(banks):
 
 cfgs = set()
 cycles = 0
+look_for = None
+p1 = True
 while True:
     bank = g_maxbank(banks)
     blocks = banks[bank]
@@ -21,9 +23,16 @@ while True:
         bank = (bank + 1) % len(banks)
     cycles += 1
     key = str(banks)
-    if key in cfgs:
-        print('part1', cycles)
-        break
-    cfgs.add(key)
+    if p1:
+        if key in cfgs:
+            print('part1', cycles)
+            p1 = False
+            cycles = 0
+            look_for = key
+        cfgs.add(key)
+    else:
+        if key == look_for:
+            print('part2', cycles)
+            break
 
     
