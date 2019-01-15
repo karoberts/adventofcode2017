@@ -14,14 +14,32 @@ with open('12.txt') as f:
             conns[n].add(r)
             conns[r].add(n)
 
-q = [0]
-found = set(q)
-while len(q) > 0:
-    n = q.pop()
-    if n != 0 and n in found:
-        continue
-    found.add(n)
-    for r in conns[n]:
-        q.append(r)
+def find_group(tgt):
+    q = [tgt]
+    found = set(q)
+    while len(q) > 0:
+        n = q.pop()
+        if n != tgt and n in found:
+            continue
+        found.add(n)
+        for r in conns[n]:
+            if n == r: continue
+            q.append(r)
+    return found
 
-print(len(found))
+with_zero = find_group(0)
+print('part1', len(with_zero))
+
+groups = []
+for n in conns.keys():
+    found = False
+    for g in groups:
+        if n in g:
+            found = True
+            break
+    if not found:
+        g = find_group(n)
+        #print('new group, size', len(g))
+        groups.append(g)
+
+print('part2', len(groups))
