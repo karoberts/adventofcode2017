@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a252d8a4-583d-4938-8797-b92313ded19d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>10.py</StartupFile>
+    <StartupFile>10-2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -39,7 +39,8 @@
     <Compile Include="07-2.py" />
     <Compile Include="08.py" />
     <Compile Include="09.py" />
-    <Compile Include="10.py">
+    <Compile Include="10-2.py" />
+    <Compile Include="10-1.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
