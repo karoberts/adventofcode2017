@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 depths = {
     0: 5,
     1: 2,
@@ -52,30 +54,52 @@ for i in range(0, max(depths.keys())):
     if i not in depths:
         depths[i] = 0
 
-me = -1
-severity = 0
-sp = 0
-sd = 1
-for i in range(0, max(depths.keys())+1):
-    me += 1
-    if me in scanners and scanners[me][sp] == 0:
-        print('caught!', me)
-        severity += (depths[me] * me)
-    #print(i, [x[0] for x in scanners.values()], me)
-    for s in scanners.keys():
-        d = depths[s]
-        if d == 0: continue
-        if scanners[s][sd] == 1:
-            if scanners[s][sp] == d - 1:
-                scanners[s][sp] = d - 2
-                scanners[s][sd] = -1
-            else:
-                scanners[s][sp] += 1
-        else:
-            if scanners[s][sp] == 0:
-                scanners[s][sp] = 1
-                scanners[s][sd] = 1
-            else:
-                scanners[s][sp] -= 1
+max_depth = max(depths.values())
 
-print('part1', severity)
+def calc(delay, scanners):
+    me = -1
+    severity = 0
+    caught = []
+    pico = 0
+    sp = 0
+    sd = 1
+    while me <= max(depths.keys()):
+        if pico >= delay:
+            me += 1
+        if me in scanners and scanners[me][sp] == 0:
+            #print('caught!', me)
+            caught.append(me)
+            severity += (depths[me] * me)
+        #print(i, [x[0] for x in scanners.values()], me)
+        for s in scanners.keys():
+            d = depths[s]
+            if d == 0: continue
+            if scanners[s][sd] == 1:
+                if scanners[s][sp] == d - 1:
+                    scanners[s][sp] = d - 2
+                    scanners[s][sd] = -1
+                else:
+                    scanners[s][sp] += 1
+            else:
+                if scanners[s][sp] == 0:
+                    scanners[s][sp] = 1
+                    scanners[s][sd] = 1
+                else:
+                    scanners[s][sp] -= 1
+        pico += 1
+    return (severity, caught)
+
+print('part1', calc(0, deepcopy(scanners))[0])
+
+
+for delay in range(0, 5000000, 2):
+    for i in range(0, max(depths.keys()) + 1):
+        if depths[i] == 0: continue
+        hit = delay + i
+        bad = (depths[i] - 1) * 2
+        if hit % bad == 0:
+            break
+    else:
+        print('part2', delay)
+        #print(calc(delay, deepcopy(scanners)))
+        break
