@@ -23,6 +23,27 @@ for i in range(1, 2018):
 
 print('part1', cur.next.value)
 
+spin_len = 1
+cur_pos = 0
+after_zero = -1
+for i in range(1, 50000000):
+    jumps = steps
+    while jumps > spin_len:
+        jumps -= spin_len
+    if cur_pos + jumps >= spin_len: 
+        jumps -= (spin_len - cur_pos)
+        cur_pos = jumps
+    else:
+       cur_pos += jumps
+    if cur_pos == 0:
+        #print(i)
+        after_zero = i
+    spin_len += 1
+    cur_pos += 1
+print('part2', after_zero)
+exit()
+
+# I eventually realized (thanks to reddit thread) that I don't need to store the whole list, just keep track of length and position
 ls = dllist.dllist()
 cur = ls.insert(0)
 zero = cur
