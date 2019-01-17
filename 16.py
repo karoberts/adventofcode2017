@@ -16,23 +16,14 @@ def rotright(p, s):
         np += p[i]
     return np
 
-def rotleft(p, s):
-    np = ''
-    s = s % len(p)
-    for i in range(s, len(p)):
-        np += p[i]
-    for i in range(0, s):
-        np += p[i]
-    return np
-
 def swap(p, ia, ib):
     ta = ia
     ia = min(ia, ib)
     ib = max(ta, ib)
     return p[:ia] + p[ib] + p[ia+1:ib] + p[ia] + p[ib+1:]
 
-with open('16.txt') as f:
-    for cmd in f.readline().split(','):
+def run(pw, cmds):
+    for cmd in cmds:
         #print(cmd)
         m = pat.match(cmd)
         if m.group(1) == 'x':
@@ -42,6 +33,15 @@ with open('16.txt') as f:
         elif m.group(1) == 's':
             pw = rotright(pw, int(m.group(2)))
         #print(pw)
+    return pw
 
+with open('16.txt') as f:
+    cmds = f.readline().split(',')
+
+pw = run(pw, cmds)
 print('part1', pw)
 
+# discovered that the original repeats every 60, and 1B % 60 == 40
+for i in range(999999962, 1000000001):
+    pw = run(pw, cmds)
+print('part2', pw)
