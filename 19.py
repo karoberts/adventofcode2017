@@ -28,9 +28,11 @@ going = set(['|', '-', '+'])
 px = start_x
 py = 0
 path = ''
+steps = 0
 while True:
     k = key(px, py)
     c = grid[k]
+    steps += 1
 
     #print(k, dir, c)
 
@@ -80,4 +82,5 @@ while True:
         print('going right/left no path')
         break
 
-print(path)
+print('part1', path)
+print('part2', steps)
