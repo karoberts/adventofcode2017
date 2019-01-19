@@ -1,3 +1,5 @@
+import sys
+
 def key(x,y): return '{},{}'.format(x,y)
 
 size = 3
@@ -43,7 +45,7 @@ def match_set(x, y, gx, gy, ms, msize, grid, new_grid):
             if grid[key(x + 1, y + 1)] != r[4]:
                 continue
             if match(grid, x, y, r):
-                print('g {},{} from {},{} matched rule {}'.format(gx,gy,x,y,r[10]))
+                #print('g {},{} from {},{} matched rule {}'.format(gx,gy,x,y,r[10]))
                 rp = 0
                 for ny in range(gy * 4, gy * 4 + 4):
                     for nx in range(gx * 4, gx * 4 + 4):
@@ -131,17 +133,17 @@ with open('21.txt') as f:
     grid = {'0,0':0, '1,0':1, '2,0':0,  '0,1':0, '1,1':0, '2,1':1,  '0,2':1, '1,2':1, '2,2': 1}
     print_grid(grid)
 
-    for i in range(0, 5):
+    for i in range(0, 18):
         new_grid = {}
         if size % 2 == 0:
-            print('2=>3')
+            #print('2=>3')
             for y in range(0, size, 2):
                 for x in range(0, size, 2):
                     match_set(x, y, x // 2, y // 2, _2s, 2, grid, new_grid)
             size = (size // 2) * 3
             pass
         else:
-            print('3=>4')
+            #print('3=>4')
             for y in range(0, size, 3):
                 for x in range(0, size, 3):
                     match_set(x, y, x // 3, y // 3, _3s, 3, grid, new_grid)
@@ -149,9 +151,9 @@ with open('21.txt') as f:
             pass
         grid = new_grid
         print('  iter', i, sum(grid.values()), 'size', size)
-        print_grid(grid)
+        if i == 4:
+            print('part1', sum(grid.values()))
+        sys.stdout.flush()
+        #print_grid(grid)
 
-    print('part1', sum(grid.values()))
-
-# < 217
-# ! 214
+print('part2', sum(grid.values()))
