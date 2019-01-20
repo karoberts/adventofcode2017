@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a252d8a4-583d-4938-8797-b92313ded19d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>22-2-complex.py</StartupFile>
+    <StartupFile>23.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -79,6 +79,9 @@
     <Compile Include="22-2-complex.py" />
     <Compile Include="22-2.py" />
     <Compile Include="22-1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="23.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="dllist.py" />
