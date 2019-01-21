@@ -1,5 +1,6 @@
 from collections import defaultdict
 import re
+import sys
 
 program = []
 with open('23.txt') as f:
@@ -37,6 +38,10 @@ while True:
     v2 = regs[pline['2']] if pline['n2'] is None else pline['n2']
     r = pline['1']
 
+    if op[0] == '#':
+        ip += 1
+        continue
+
     if op == 'set':
         regs[r] = v2
     elif op == 'sub':
@@ -52,6 +57,18 @@ while True:
 
     #print(ip, regs, pline)
 
-print(regs)
-print(nmuls)
+#print(regs)
+print('part1', nmuls)
 
+def isprime(n):
+    if not n & 1: 
+        return False
+    for x in range(3, int(n**0.5)+1, 2):
+        if n % x == 0:
+            return False
+    return True
+
+# see 23-program.py
+# through some considerable analysis, discovered that the program is counting how many numbers
+# between 107900 and 124900 (every 17) are not prime
+print('part2', sum((1 for b in range(107900, 124901, 17) if not isprime(b))))

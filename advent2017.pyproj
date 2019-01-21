@@ -81,6 +81,7 @@
     <Compile Include="22-1.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="23-program.py" />
     <Compile Include="23.py">
       <SubType>Code</SubType>
     </Compile>
