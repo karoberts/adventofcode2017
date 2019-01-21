@@ -3,6 +3,7 @@ from collections import defaultdict
 from copy import deepcopy
 
 max_bridge = 0
+maxlens = defaultdict(lambda:0)
 
 def maxsum(comps):
     s = sum(comps.keys())
@@ -25,6 +26,8 @@ def dfs(comps, lp, sm, depth):
             comps_[p].remove(lp)
         sums.append(dfs(comps_, p, sm + p + lp, depth + 1))
     if len(sums) == 0:
+        if sm > maxlens[depth]:
+            maxlens[depth] = sm
         if sm > max_bridge:
             #print('bridge:', sm, depth)
             #sys.stdout.flush()
@@ -46,6 +49,7 @@ with open('24.txt') as f:
     #{19, 16, 43, 5}
     ret = dfs(comps, 0, 0, 0)
     print('part1', ret)
+    print('part2', maxlens[max(maxlens.keys())])
 
 # < 2009
 # > 776
