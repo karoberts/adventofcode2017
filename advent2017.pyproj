@@ -88,6 +88,7 @@
     <Compile Include="24.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="25.py" />
     <Compile Include="dllist.py" />
   </ItemGroup>
   <ItemGroup>
