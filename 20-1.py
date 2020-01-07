@@ -49,3 +49,4 @@ for round in range(0, 1000):
 
 for p in islice(sorted(points, key=lambda x:x['d']), 3):
     print('  ', p['id'], p['d'])
+    break
