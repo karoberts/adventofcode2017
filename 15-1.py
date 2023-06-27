@@ -9,8 +9,10 @@ a = A
 b = B
 ct = 0
 for p in range(0,40000000):
-    a = gen(a, Af)
-    b = gen(b, Bf)
+    #a = gen(a, Af)
+    #b = gen(b, Bf)
+    a = (a * Af) % 0x7FFFFFFF
+    b = (b * Bf) % 0x7FFFFFFF
 
     if (a & 0xFFFF) == (b & 0xFFFF):
         ct += 1
