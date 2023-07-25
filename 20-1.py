@@ -29,7 +29,7 @@ def get_min():
 # < 223
 
 lowest = -1
-for round in range(0, 1000):
+for round in range(0, 400):
     for p in points:
         for i in range(0, 3):
             p['v'][i] += p['a'][i]
